@@ -1,17 +1,29 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import Home    from './pages/Home';
+import Issue   from './pages/Issue';
+import Verify  from './pages/Verify';
 
-import './App.css'
-import Navbar from './components/Navbar'
-import AppRoutes from './routs/AppRoutes'
+const NETWORK = 'https://api.devnet.solana.com';
+const wallets = [new PhantomWalletAdapter()];
 
-function App() {
-  
+const App = () => (
+  <ConnectionProvider endpoint={NETWORK}>
+    <WalletProvider wallets={wallets} autoConnect>
+      <WalletModalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/"        element={<Home   />} />
+            <Route path="/issue"   element={<Issue  />} />
+            <Route path="/verify"  element={<Verify />} />
+          </Routes>
+        </BrowserRouter>
+      </WalletModalProvider>
+    </WalletProvider>
+  </ConnectionProvider>
+);
 
-  return (
-    <>
-       <Navbar />
-       <AppRoutes />
-    </>
-  )
-}
-
-export default App
+export default App;
