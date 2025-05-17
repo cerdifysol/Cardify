@@ -100,6 +100,7 @@ export default function IssueCertificate() {
       <input
         type="file"
         accept="image/*"
+        placeholder='Upload image'
         onChange={(e) => {
           const selectedFile = e.target.files?.[0] || null
           setFile(selectedFile)

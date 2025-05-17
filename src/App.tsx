@@ -7,6 +7,7 @@ import Home    from './pages/Home';
 import Issue   from './pages/Issue';
 import Verify  from './pages/Verify';
 import Header from './components/Header';
+import Profile from './pages/Profile';
 
 const NETWORK = 'https://api.devnet.solana.com';
 const wallets = [new PhantomWalletAdapter()];
@@ -20,6 +21,7 @@ const App = () => (
             <Route path="/"        element={<Home   />} />
             <Route path="/issue"   element={<Issue  />} />
             <Route path="/verify"  element={<Verify />} />
+            <Route path="/profile"  element={<Profile />} />
           </Routes>
    
       </WalletModalProvider>
